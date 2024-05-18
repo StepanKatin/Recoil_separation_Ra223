@@ -5,4 +5,4 @@ This method have benefits over conventional wet chemistry techniques to separate
 <img src="https://physics.aps.org/assets/40faa6b5-0173-450e-94a3-dfc8cd6f5f8d/es129_medium_1.png" /></h1>
 
 The collection of particles will be carried out by means of electrostatic capture
-<img src="https://www.researchgate.net/profile/Vinod-Kadam/publication/329672584/figure/fig4/AS:705086191853569@1545117056477/3-Particle-capture-mechanism-of-a-single-fibre-16-with-permission-from-Sage_W640.jpg"/>
+<img src="https://www.researchgate.net/profile/Karin-Ardon-Dryer/publication/281096418/figure/fig1/AS:614149000290320@1523435940449/Mechanisms-that-affect-the-collection-process-of-aerosol-particles-by-water-droplets-The_W640.jpg"/>
