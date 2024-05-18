@@ -6,4 +6,4 @@ This method have benefits over conventional wet chemistry techniques to separate
 
 The collection of particles will be carried out by means of electrostatic capture
 
-<img src=""/></h2>
+<img src="https://github.com/StepanKatin/Recoil_separation_Ra223/blob/main/Aerosol-particle-collection-mechanisms-Different-types-of-filters-have-different_W640.jpg"/></h2>
