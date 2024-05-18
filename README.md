@@ -6,4 +6,4 @@ This method have benefits over conventional wet chemistry techniques to separate
 
 The collection of particles will be carried out by means of electrostatic capture
 
-<img src="https://www.researchgate.net/profile/Karin-Ardon-Dryer/publication/281096418/figure/fig1/AS:614149000290320@1523435940449/Mechanisms-that-affect-the-collection-process-of-aerosol-particles-by-water-droplets-The_W640.jpg"/></h2>
+<img src=""/></h2>
