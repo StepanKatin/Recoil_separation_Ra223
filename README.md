@@ -7,3 +7,11 @@ This method have benefits over conventional wet chemistry techniques to separate
 The collection of particles will be carried out by means of electrostatic capture
 
 <img src="https://github.com/StepanKatin/Recoil_separation_Ra223/blob/main/Aerosol-particle-collection-mechanisms-Different-types-of-filters-have-different_W640.jpg"/></h2>
+
+# Literature
+1. Separation of the alpha-emitting radioisotopes actinium-225 and bismuth-213 from thorium-229 using alpha recoil methods
+DOI: 10.1016/S0168-583X(03)01580-5
+2. Application of the Electrostatic Separation of Recoil Atoms to the 225Ac 213Bi Decay Series Part II the Electrostatic Separation of Recoil Atoms
+November 2008
+Conference: 60th American Chemical Society Southeast Regional Meeting
+Ath. J. Daniel MarshSaed MirzadehSaed MirzadehGeorge K. Schweitzer
