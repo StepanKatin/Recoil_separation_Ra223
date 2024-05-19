@@ -15,8 +15,6 @@ DOI: [10.1016/S0168-583X(03)01580](http://dx.doi.org/10.1016/S0168-583X(03)01580
 
 2. Application of the Electrostatic Separation of Recoil Atoms to the 225Ac 213Bi Decay Series Part II the Electrostatic Separation of Recoil Atoms
 (https://www.researchgate.net/publication/267352358_Application_of_the_Electrostatic_Separation_of_Recoil_Atoms_to_the_225Ac_213Bi_Decay_Series_Part_II_the_Electrostatic_Separation_of_Recoil_Atoms)
-
 November 2008
 Conference: 60th American Chemical Society Southeast Regional Meeting
-### Ath. 
-J. Daniel MarshSaed MirzadehSaed MirzadehGeorge K. Schweitzer
+### Ath. J. Daniel MarshSaed MirzadehSaed MirzadehGeorge K. Schweitzer
