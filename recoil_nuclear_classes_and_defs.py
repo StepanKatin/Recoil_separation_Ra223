@@ -12,7 +12,8 @@ CHARGE_ELECRON = 1.60219e-19  # заряд электрона в Кл
 AIR_IONISATION = 12.8 # eV
 A0 = 0.529e-10  # Bohr radius in meters
 Z_EFF = 19.65  # Effective charge after considering screening in pozitrons
-
+R = 8.314 #Дж/(моль⋅К)
+K = 1.380649e-23 #Дж/К
 
 
 
@@ -26,19 +27,25 @@ class RecoilNuclide:
         self.mass = mass
         self.charge = charge
         self.masskilo = mass*MASS_TO_KILO
-        self.eff_charge = Z_eff
+        self.eff_charge = Z_EFF
 
 
     def recoil_vel(self):
         """func rerurn recoil nuclide velocity in metr per second """
         
-        return ((2*self.__energy *EV_TO_J)/self.__masskilo)**0.5
-    
-    def stopping_power_air(energy_at_t, charge_nucl):
-        energy_keV = np.array([10, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000])
-        sigma_m2 = np.array([2.5e-18, 1.2e-18, 8.5e-19, 6.0e-19, 4.5e-19, 3.8e-19, 3.2e-19, 2.8e-19, 2.5e-19, 2.2e-19, 2.0e-19, 1.8e-19])
+        return ((2*self.energy *EV_TO_J)/self.masskilo)**0.5
 
-        # Интерполяция данных для получения сечения при 100 кэВ
-        sigma_ionization = (K * Z_alpha**2) / E_alpha  # сечение ионизации в м^2
-        energy_alpha = 100  # кэВ
-        sigma_alpha = np.interp(energy_alpha, energy_keV, sigma_m2)
+
+
+
+class Air:
+    
+    def __init__(self, pressure, volume, T):
+        self.pressure = pressure
+        self.volume = volume
+        self.M = 28.98 #kg/mol
+        self.T = T
+       
+    def num_of_moleculs(self):
+        return (self.pressure*self.volume)/(K*self.T)
+    
