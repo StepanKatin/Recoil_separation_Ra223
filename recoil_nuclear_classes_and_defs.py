@@ -34,6 +34,16 @@ class RecoilNuclide:
         """func rerurn recoil nuclide velocity in metr per second """
         
         return ((2*self.energy *EV_TO_J)/self.masskilo)**0.5
+    
+    def energy_loss(V, airmass, aircharge, airdencity):
+        B = V/SPEED_OF_LIGHT
+        Vklad_sred=((Z_air*(Z**2)*air_density)/(A_air*(B**2)))
+        Vklad_chast = (11.2+m.log((B**2)/(Z_air*(1-B**2)))-B**2)
+        dE = 3.1*10**(5)*Vklad_sred*Vklad_chast
+        dEdx.append(dE)
+        Etest = Etest + dE
+        answer.append(Etest)
+        speed.append(V0)
 
 
 
@@ -45,7 +55,12 @@ class Air:
         self.volume = volume
         self.M = 28.98 #kg/mol
         self.T = T
+        self.charge = 7.3
        
     def num_of_moleculs(self):
         return (self.pressure*self.volume)/(K*self.T)
     
+    def air_density(self):
+        mol = (self.pressure*self.volume)/(R*self.T)
+        return (mol*self.M)/self.volume
+        
