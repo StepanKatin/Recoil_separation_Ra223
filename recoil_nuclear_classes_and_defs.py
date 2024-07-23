@@ -12,22 +12,11 @@ Z_EFF = 19.65  # Effective charge after considering screening in pozitrons
 R = 8.314 #Дж/(моль⋅К)
 K = 1.380649e-23 #Дж/К
 
-#убрать класс ядра отдачи, за ненадобностью
-class RecoilNuclide:
 
-    def __init__(self, energy, charge, mass, Z_EFF):
-        """energy in eV, charge in abs charge of pozitron mass in Da"""
-        self.energy = energy #убрать, динамическое измерение
-        self.mass = mass
-        self.charge = charge #убрать, динамическое изменение
-        self.masskilo = mass*MASS_TO_KILO
-        self.eff_charge = Z_EFF
-
-
-    def recoil_vel(self):
-        """func rerurn recoil nuclide velocity in metr per second """
+def recoil_vel(self):
+    """func rerurn recoil nuclide velocity in metr per second """
         
-        return ((2*self.energy *EV_TO_J)/self.masskilo)**0.5
+    return ((2*self.energy *EV_TO_J)/self.masskilo)**0.5
 
 class Air:
     
