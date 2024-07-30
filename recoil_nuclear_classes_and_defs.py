@@ -11,6 +11,7 @@ A0 = 0.529e-10  # Bohr radius in meters
 Z_EFF = 19.65  # Effective charge after considering screening in pozitrons
 R = 8.314 #Дж/(моль⋅К)
 K = 1.380649e-23 #Дж/К
+EPS0 = 8.854e-12 #Ф/м 
 
 
 def recoil_vel(self):
