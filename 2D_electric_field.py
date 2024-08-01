@@ -132,11 +132,70 @@ cbr1=axg.imshow(total, origin="lower", extent=(x_min, x_max, y_min, x_max), cmap
 figg.colorbar(cbr1, ax=axg)
 
 
-figg, axx = plt.subplots()
+figx, axx = plt.subplots()
 
 cs = axx.contourf(X_axis, Y_axis, total, locator=ticker.LogLocator(), cmap=cm.PuBu_r)
 
-figg.colorbar(cs, ax=axx, cmap = "RdGy")
+figx.colorbar(cs, ax=axx, cmap = "RdGy")
 
 plt.show()
+
+
+
+
+def calc_electric_field(X, Y, sph_cords, needl_cords, r_sphere, l_needle, r_needle, U):
+
+    c_sphere = 4*np.pi*cnst.EPS0*r_sphere  #Фарад 
+
+    c_needle = (2*np.pi*cnst.EPS0*l_needle)/(np.log(2*l_needle/r_needle)) # Фарад, емкость иглы как емкость цилиндра
+
+    # Координаты точечных зарядов
+    q_sphere_x, q_sphere_y = sph_cords # заряд находится в центре
+
+    q_needl_x, q_needl_y = needl_cords # конец иглы находится на расстоянии 4 см от центра сферы
+
+    # Величина зарядов
+    q_sph = c_sphere*U  # в кулонах
+
+    q_needl = -c_needle*U # Kl
+
+    # Константы
+    epsilon_0 = cnst.EPS0 # Электрическая постоянная, Ф/м
+
+    # Создание сетки точек в плоскости xy
+
+    r1 = np.sqrt(X_axis**2 + Y_axis**2)
+
+    r2 = np.sqrt(X_axis**2 + (Y_axis - q_needl_y)**2)
+
+    # Инициализация массивов для компонент поля
+    E_x = np.zeros_like(X_axis)
+    E_y = np.zeros_like(Y_axis)
+
+    # Поле от первой сферы
+    outside1 = r1 > r_sphere
+
+    inside1 = r1 <= r_sphere
+    E_x[outside1] += (1 / (4 * np.pi * epsilon_0)) * (q_sph * X_axis[outside1]) / (r1[outside1]**3)
+    E_y[outside1] += (1 / (4 * np.pi * epsilon_0)) * (q_sph * Y_axis[outside1]) / (r1[outside1]**3)
+
+    E_x[inside1] += (1 / (4 * np.pi * epsilon_0)) * (q_sph * X_axis[inside1]) / (r_sphere**3)
+    E_y[inside1] += (1 / (4 * np.pi * epsilon_0)) * (q_sph * Y_axis[inside1]) / (r_sphere**3)
+
+    # Поле от второй сферы
+    outside2 = r2 > r_needle
+
+    inside2 = r2 <= r_needle
+
+    E_x[outside2] += (1 / (4 * np.pi * epsilon_0)) * (q_needl * X_axis[outside2]) / (r2[outside2]**3)
+    E_y[outside2] += (1 / (4 * np.pi * epsilon_0)) * (q_needl * (Y_axis[outside2] - q_needl_y)) / (r2[outside2]**3)
+
+    E_x[inside2] += (1 / (4 * np.pi * epsilon_0)) * (q_needl * X_axis[inside2]) / (r_needle**3)
+    E_y[inside2] += (1 / (4 * np.pi * epsilon_0)) * (q_needl * (Y_axis[inside2] - q_needl_y)) / (r_needle**3)
+
+    # Суммарное поле
+
+    E_field_total = np.sqrt(E_x**2 + E_y**2)
+
+    return E_x, E_y, E_field_total
 
