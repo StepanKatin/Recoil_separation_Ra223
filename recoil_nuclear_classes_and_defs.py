@@ -1,4 +1,4 @@
-
+import numpy as np
 
 SPEED_OF_LIGHT = 299_792_458  # м/с
 GRAVITATIONAL_CONSTANT = 6.67430e-11  # м^3 кг^−1 с^−2
@@ -15,6 +15,13 @@ R = 8.314 #Дж/(моль⋅К)
 K = 1.380649e-23 #Дж/К
 EPS0 = 8.854e-12 #Ф/м 
 
+
+def ionisation_losses(velocity, mass, charge):
+    B = velocity/SPEED_OF_LIGHT
+    Vklad_sred=((Air.charge*(charge**2)*Air.air_density())/(Air.M*(B**2)))
+    Vklad_chast = (11.2+np.log((B**2)/(Air.charge*(1-B**2)))-B**2)
+    dE = 3.1*10**(5)*Vklad_sred*Vklad_chast
+    return recoil_vel(dE)
 
 def recoil_vel(self):
     """func rerurn recoil nuclide velocity in metr per second """
