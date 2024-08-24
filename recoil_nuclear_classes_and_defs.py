@@ -16,17 +16,21 @@ K = 1.380649e-23 #Дж/К
 EPS0 = 8.854e-12 #Ф/м 
 
 
-def ionisation_losses(velocity, mass, charge):
-    B = velocity/SPEED_OF_LIGHT
-    Vklad_sred=((Air.charge*(charge**2)*Air.air_density())/(Air.M*(B**2)))
-    Vklad_chast = (11.2+np.log((B**2)/(Air.charge*(1-B**2)))-B**2)
-    dE = 3.1*10**(5)*Vklad_sred*Vklad_chast
-    return recoil_vel(dE)
+def ionisation_losses(velocity, charge, air_obj):
+    if velocity <= 0:
+        return 1
+    B = abs(velocity/SPEED_OF_LIGHT)
+    charge = charge/CHARGE_ELECRON
 
-def recoil_vel(self):
+    Vklad_sred=((air_obj.charge*(charge**2)*air_obj.air_density())/(air_obj.M*(B**2)))
+    Vklad_chast = (11.2+np.log((B**2)/(air_obj.charge*(1-B**2)))-B**2)
+    dE = 3.1*10**(5)*Vklad_sred*Vklad_chast
+    return recoil_vel(abs(dE))
+
+def recoil_vel(energy):
     """func rerurn recoil nuclide velocity in metr per second """
         
-    return ((2*self.energy *EV_TO_J)/self.masskilo)**0.5
+    return ((2*energy *EV_TO_J)/MASS_TO_KILO)**0.5
 
 class Air:
     
@@ -36,10 +40,14 @@ class Air:
         self.M = 28.98 #kg/mol
         self.T = T
         self.charge = 7.3
-       
+    
+   
+
     def num_of_moleculs(self):
         return (self.pressure*self.volume)/(K*self.T)
     
+
+
     def air_density(self):
         mol = (self.pressure*self.volume)/(R*self.T)
         return (mol*self.M)/self.volume
@@ -81,6 +89,41 @@ def calc_electric_field(X, Y, sph_cords, needl_cords, r_sphere, l_needle, r_need
     E_field_total = np.sqrt(E_x**2 + E_y**2)
 
     return E_x, E_y, E_field_total
+
+
+def source_surface(X, Y, r_sphere):
+    x_c, y_c = (0, 0)  # Координаты центра окружности
+
+    # Инициализация пустых массивов для хранения точек, принадлежащих окружности
+    x_r = []
+    y_r = []
+    radius = (X - x_c)**2 + (Y - y_c)**2
+    mask = np.isclose( radius, r_sphere**2, atol=1e-6)
+
+    # Преобразование результатов в массивы
+    x_r = X[mask]
+    y_r = Y[mask]
+    return x_r, y_r
+def source_halph_surface(r_sphere):
+    x = np.linspace(-0.07, 0.07, 1000)
+    y = np.linspace(0, 0.07, 500)
+    X, Y = np.meshgrid(x, y)
+    x_c, y_c = (0, 0)  # Координаты центра окружности
+
+    # Инициализация пустых массивов для хранения точек, принадлежащих окружности
+    x_r = []
+    y_r = []
+    radius = (X - x_c)**2 + (Y - y_c)**2
+    mask = np.isclose( radius, r_sphere**2, atol=1e-6)
+
+    # Преобразование результатов в массивы
+    x_r = X[mask]
+    y_r = Y[mask]
+    return x_r, y_r
+
+
+def start_dot():
+    pass
 
 
 
